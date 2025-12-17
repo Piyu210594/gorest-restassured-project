@@ -9,12 +9,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasItems;
 
 @RunWith(SerenityRunner.class)
-
 public class UserAssertionTest {
+
     static ValidatableResponse response;
 
     @BeforeClass
@@ -28,59 +26,54 @@ public class UserAssertionTest {
                 .get("/users")
                 .then()
                 .statusCode(200);
-
     }
-    // Verify if the total record is 20
 
+    // 1. Verify that the total number of records returned is 20
     @Test
     public void getTotalRecord() {
         response.body("$", hasSize(20));
     }
 
-    // Verify if the name of id = 8228703 is equal to "Brijesh Gowda"
+    // 2. Verify that the name of the user with id = 8228688 is "Vishnu Kaur"
     @Test
     public void getNameUserId() {
-        response.body("find { it.id == 8228703 }.name",
-                equalTo("Brijesh Gowda"));
+        response.body("find { it.id == 8228688 }.name",
+                equalTo("Vishnu Kaur"));
     }
 
-    //Check the single ‘Name’ in the Array list (Atmaja Deshpande)
+    // 3. Verify that the response contains the name "Vishnu Kaur"
     @Test
     public void getSingleName() {
-        response.body("name", hasItem("Brijesh Gowda"));
+        response.body("name", hasItem("Vishnu Kaur"));
     }
 
-
-    // Check the multiple ‘Names’ in the ArrayList (Girija Reddy, Shubha Varma, Laal Shukla )
+    // 4. Verify that the response contains multiple names:
+    //    "Vishnu Kaur", "Suma Khatri", and "Kumar Johar"
     @Test
     public void getMultipleNames() {
-        response.body("name", hasItems("Girija Reddy", "Shubha Varma", "Laal Shukla"));
-
+        response.body("name",
+                hasItems("Vishnu Kaur", "Suma Khatri", "Kumar Johar"));
     }
 
-    // Verify the email of userid = 8228699 is equal “menaka_mehrotra@nitzsche.example”
+    // 5. Verify that the email of the user with id = 8228683
+    //    is "asan_mrs_ajit@goyette-kunde.test"
     @Test
     public void getEmailOfUserId() {
-        response.body("find { it.id == 8228699 }.email",
-                equalTo("menaka_mehrotra@nitzsche.example"));
-
+        response.body("find { it.id == 8228683 }.email",
+                equalTo("asan_mrs_ajit@goyette-kunde.test"));
     }
 
-    // Verify the status is “Active” of user name is “Shubha Varma”
+    // 6. Verify that the status of the user with name "Uma Pandey MD" is "active"
     @Test
     public void validateStatusActive() {
-        response.body("find { it.name == 'Shubha Varma' }.status",
+        response.body("find { it.name == 'Uma Pandey MD' }.status",
                 equalTo("active"));
-
     }
 
-
-    //  Verify the Gender = male of user name is “DhanalakshmiPothuvaal”
+    // 7. Verify that the gender of the user with name "Uma Pandey MD" is "female"
     @Test
     public void validateGender() {
-        response.body("find { it.name== 'Shubha Varma' }.gender",
-                equalTo("male"));
-
+        response.body("find { it.name == 'Uma Pandey MD' }.gender",
+                equalTo("female"));
     }
-
 }

@@ -2,12 +2,15 @@ package com.gorest.testsuite;
 
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
+import net.serenitybdd.junit.runners.SerenityRunner;
 import net.serenitybdd.rest.SerenityRest;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.util.List;
 
+@RunWith(SerenityRunner.class)
 public class PostsExtractionTest {
     static ValidatableResponse response;
 

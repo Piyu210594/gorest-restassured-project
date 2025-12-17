@@ -9,7 +9,7 @@ public class EndPoints {
      * This is Endpoints of student api
      */
    // public static final String GET_ALL_STORES = "";
-//    public static final String GET_SINGLE_STUDENT_BY_ID = "/{studentID}";
+//    public static final String GET_SINGLE_BOOKING_BY_ID = "/{id}";
 //    public static final String STORE_BY_ID = "/{studentID}";
 //    public static final String DELETE_STUDENT_BY_ID = "/{studentID}";
 
